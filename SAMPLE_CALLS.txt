@@ -1,0 +1,39 @@
+
+
+
+
+# current active jobs
+.\automicv2.exe display --type active
+
+# sample exec in UAT
+.\automicv2.exe execute --taskname "A_CORE_BASE_TEMPLATE_TEST_STATUS"
+
+# sample exec in PRD
+.\automicv2.exe execute --taskname "A_CORE_BASE_TEMPLATE_TEST_STATUS" --aeclientid "100" --aehost "automicAEserver"
+
+# show all the SFTP runs
+.\automicv2.exe report --reporttype "LIST" --searchitemname "MY_TASK"
+
+# get the REP report
+.\automicv2.exe report --reporttype REP -r 10267180
+# get the POST report
+.\automicv2.exe report --reporttype POST -r 10267180
+
+
+# search for objects by name
+.\automicv2.exe search --objectname "MY_TASK" --maxsrchresults 15 --objecttypes *
+
+#
+# PROD
+#
+
+# HRDB load cal in PROD
+.\automicv2.exe execute --taskname "MY_TASK" --aeclientid "999" --aehost "automicAEserver"
+
+
+
+#
+# Transfer objects from UAT to PRD
+#
+.\automicv2.exe export --exportfile code_unit.json  --objectname MY_TASK
+.\automicv2.exe import -f code_unit.json -o --aeclientid 999 --aehost automicAEserver
